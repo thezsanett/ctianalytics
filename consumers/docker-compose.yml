@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  consumer_example:
+    container_name: consumer_example
+    build: .
+
+networks:
+  default:
+    external:
+      name: kafka-network

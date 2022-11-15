@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  otxdata_producer:
+    container_name: otxdata_producer
+    build: .
+    environment:
+      KAFKA_BROKER_URL: broker:9092
+      TOPIC_NAME: alienvaultdata
+
+networks:
+  default:
+    external:
+      name: kafka-network
