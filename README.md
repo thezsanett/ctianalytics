@@ -9,8 +9,14 @@ Run the command ```cat start.bat > start.sh && sh start.sh```.
 
 ### On Windows
 
-Run the command ```cat start.txt > start.bat && ./start.bat```.
+Run the ```start.bat``` file.
 
 ## How to stop the project
 
-Same as above but with the ```stop.txt``` file.
+### On Linux or MacOs
+
+Run the command ```cat stop.bat > stop.sh && sh stop.sh```.
+
+### On Windows
+
+Run the ```stop.bat``` file.
