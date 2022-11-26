@@ -5,7 +5,7 @@ Generate daily and weekly reports via dashboards with relevant content.
 
 ### On Linux or MacOs
 
-Run the command ```cat start.txt > start.sh && ./start.sh```.
+Run the command ```cat start.bat > start.sh && sh start.sh```.
 
 ### On Windows
 
