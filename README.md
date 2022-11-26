@@ -1,12 +1,16 @@
 # ctianalytics
 Generate daily and weekly reports via dashboards with relevant content.
 
-## How to use
+## How to start the project
 
 ### On Linux or MacOs
 
-Run the ```start.sh``` file.
+Run the command ```cat start.txt > start.sh && ./start.sh```.
 
 ### On Windows
 
-Run the ```start.bat``` file.
+Run the command ```cat start.txt > start.bat && ./start.bat```.
+
+## How to stop the project
+
+Same as above but with the ```stop.txt``` file.
