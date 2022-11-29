@@ -16,7 +16,7 @@ curl -s \
     "topics": "alienvaultdata",
     "contactPoints": "cassandradb",
     "loadBalancing.localDc": "datacenter1",
-    "topic.alienvaultdata.kafkapipeline.alienvaultdata.mapping": "id=value.id, created_date=value.created, ip=value.indicator",
+    "topic.alienvaultdata.kafkapipeline.alienvaultdata.mapping": "pulse_id=value.pulse_id, ip=value.indicator, created_date=value.created, type=value.type",
     "topic.alienvaultdata.kafkapipeline.alienvaultdata.consistencyLevel": "LOCAL_QUORUM"
   }
 }'
