@@ -1,6 +1,7 @@
 CREATE TABLE alienvaultdata (
-  id BIGINT,
+  pulse_id UUID,
   created_date TIMESTAMP,
   ip TEXT,
-  PRIMARY KEY (id)
+  type TEXT,
+  PRIMARY KEY (pulse_id, created_date, ip, type)
 );
