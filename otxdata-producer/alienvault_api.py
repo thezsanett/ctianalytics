@@ -8,6 +8,8 @@ from datetime import datetime, timedelta
 SLEEP_TIME = int(os.environ.get("SLEEP_TIME", 5))
 producer = KafkaProducer(bootstrap_servers=["broker:9092"], api_version=(0, 10, 1))
 
+print("Producer created.")
+
 # otx = OTXv2("a1c6e949d849b28592e0f25ebbd6d05c4cb49d28f442c96f45d5342874e4c286")
 otx = None
 
@@ -21,13 +23,15 @@ def get_and_send_pulse(otx, pulse_id):
       {'indicator': 'aoldaily.com', 'type': 'Domain'}
   ]
 
+  print("Pulses acquired.")
+
   for indicator in indicators:
     # data = otx.get_indicator_details_full(IndicatorTypes.DOMAIN, indicator["indicator"])
     data = indicator
 
     producer.send('alienvaultdata', json_serializer(data))
 
-    print("Sent: ", row)
+    print("Sent: ", data)
     time.sleep(5)
 
 

@@ -19,7 +19,7 @@ while counter < 10 and consumer is None:
         sleep(15)
 
 if consumer is not None:
-    print("Printing messages on topic alienvaultdata")
+    print("Kafka is up. Printing messages on topic alienvaultdata")
     for msg in consumer:
         print(json.loads(msg.value))
     print("Done")
