@@ -87,7 +87,7 @@ services:
     depends_on:
       - connect
     networks:
-      - default
+      - secondary
 
 networks:
   default:
