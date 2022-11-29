@@ -27,9 +27,8 @@ def get_and_send_pulse(otx, pulse_id):
 
     producer.send('alienvaultdata', json_serializer(data))
 
-    print("Sent: ", row)
+    print("Sent: ", data)
     time.sleep(5)
-
 
 get_and_send_pulse(otx, "602bc528f447d628d41494f2")
 # get_and_send_pulse(otx, "") #TODO
