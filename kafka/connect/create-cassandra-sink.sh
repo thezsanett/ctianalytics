@@ -16,7 +16,7 @@ curl -s \
     "topics": "alienvaultdata",
     "contactPoints": "cassandradb",
     "loadBalancing.localDc": "datacenter1",
-    "topic.alienvaultdata.kafkapipeline.alienvaultdata.mapping": "pulse_id=value.pulse_id, ip=value.indicator, created_date=value.created, type=value.type",
+    "topic.alienvaultdata.kafkapipeline.alienvaultdata.mapping": "pulse_id=value.pulse_id, ip=value.indicator, created_date=value.created, type=value.type, latitude=value.latitude, longitude=value.longitude, accuracy_radius=value.accuracy_radius, url_list_length=value.url_list_length",
     "topic.alienvaultdata.kafkapipeline.alienvaultdata.consistencyLevel": "LOCAL_QUORUM"
   }
 }'
