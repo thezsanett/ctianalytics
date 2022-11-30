@@ -1,8 +1,7 @@
 from OTXv2 import OTXv2, IndicatorTypes
 from kafka import KafkaProducer
-from time import sleep
 from datetime import datetime
-import os, uuid, json
+import uuid, json
 
 producer = KafkaProducer(bootstrap_servers=["broker:9092"], api_version=(0, 10, 1))
 empty_detail = {
@@ -59,7 +58,6 @@ def get_and_send_pulse(otx, pulse_id, generated_id):
     producer.send('alienvaultdata', json_serializer(data))
 
     print("Sent: ", data)
-    sleep(1)
 
 for pulse in pulses:
   generated_id = str(uuid.uuid1())
