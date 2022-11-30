@@ -3,8 +3,8 @@ CREATE TABLE alienvaultdata (
   created_date TIMESTAMP,
   ip TEXT,
   type TEXT,
-  latitude FLOAT,
-  longitude FLOAT,
+  latitude INT,
+  longitude INT,
   accuracy_radius INT,
   url_list_length INT,
   PRIMARY KEY (pulse_id, created_date, ip, type)

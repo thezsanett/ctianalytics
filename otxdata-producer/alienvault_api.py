@@ -50,8 +50,8 @@ def get_and_send_pulse(otx, pulse_id, generated_id):
 
   for data in indicators:
     details = get_details(data)
-    data['latitude'] = details['geo']['latitude']
-    data['longitude'] = details['geo']['longitude']
+    data['latitude'] = int(details['geo']['latitude'])
+    data['longitude'] = int(details['geo']['longitude'])
     data['accuracy_radius'] = details['geo']['accuracy_radius']
     data['url_list_length'] = len(details['url_list']['url_list'])
     data['pulse_id'] = generated_id
