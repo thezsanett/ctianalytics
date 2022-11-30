@@ -1,1 +1,5 @@
 cassandra/data/ 
+grafana/data/ 
+start.sh
+stop.sh
+.DS_Store

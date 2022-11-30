@@ -45,6 +45,7 @@ services:
       KAFKA_MANAGER_USERNAME: admin
       KAFKA_MANAGER_PASSWORD: admin
     command: -Dpidfile.path=/dev/null
+
   connect:
     build:
       context: .
@@ -77,6 +78,18 @@ services:
       CONNECT_INTERNAL_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
       CONNECT_INTERNAL_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
       CONNECT_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana-oss  
+    ports:
+      - 3000:3000
+    volumes:
+      - $PWD/grafana/data:/var/lib/grafana
+    depends_on:
+      - connect
+    networks:
+      - secondary
 
 networks:
   default:
