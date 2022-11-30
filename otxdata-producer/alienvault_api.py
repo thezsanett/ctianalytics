@@ -4,7 +4,6 @@ from time import sleep
 from datetime import datetime
 import os, uuid, json
 
-SLEEP_TIME = int(os.environ.get("SLEEP_TIME", 5))
 producer = KafkaProducer(bootstrap_servers=["broker:9092"], api_version=(0, 10, 1))
 empty_detail = {
   'geo': {
@@ -23,7 +22,6 @@ pulses = [
 ]
 
 otx = OTXv2("a1c6e949d849b28592e0f25ebbd6d05c4cb49d28f442c96f45d5342874e4c286")
-# otx = None
 
 def get_details(indicator):
   try:
@@ -40,11 +38,12 @@ def json_serializer(data):
   return json.dumps(data).encode("utf-8")
 
 def get_and_send_pulse(otx, pulse_id, generated_id):
-  # indicators = otx.get_pulse_indicators(pulse_id, include_inactive=False)
-  indicators = [
-    {'indicator': '69.73.130.198', 'type': 'IPv4'},
-    {'indicator': 'aoldaily.com', 'type': 'Domain'}
-  ]
+  indicators = otx.get_pulse_indicators(pulse_id, include_inactive=False)
+  # Uncomment the line below for testing purposes:
+  # indicators = [
+  #   {'indicator': '69.73.130.198', 'type': 'IPv4'},
+  #   {'indicator': 'aoldaily.com', 'type': 'Domain'}
+  # ]
 
   print("Pulse acquired.")
 
@@ -60,7 +59,7 @@ def get_and_send_pulse(otx, pulse_id, generated_id):
     producer.send('alienvaultdata', json_serializer(data))
 
     print("Sent: ", data)
-    sleep(5)
+    sleep(1)
 
 for pulse in pulses:
   generated_id = str(uuid.uuid1())
