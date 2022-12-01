@@ -3,3 +3,5 @@ grafana/data/
 start.sh
 stop.sh
 .DS_Store
+flink/flink-CTI/target/
+flink/flink-CTI/.idea/
