@@ -42,10 +42,9 @@ def create_sample_object(message_value):
 ############
 
 session = set_up_cassandra()
-rows = session.execute('SELECT * FROM alienvaultdata;')
-
-for row in rows:
-    print(row)
+# rows = session.execute('SELECT * FROM alienvaultdata;')
+# for row in rows:
+#     print(row)
 
 while counter < 10 and consumer is None:
     try:
@@ -63,10 +62,10 @@ if consumer is not None:
         message_value = json.loads(msg.value)
 
         consume_write(message_value)
-        consume_MA_accuracy_radius(message_value, num_data)
-        consume_EMA_accuracy_radius(message_value)
-        consume_reservoir_sampling(message_value, num_data, create_sample_object)
-        consume_leader_algorithm(message_value, num_data, create_sample_object)
+        consume_MA_accuracy_radius(session, message_value, num_data)
+        consume_EMA_accuracy_radius(session, message_value)
+        consume_reservoir_sampling(session, message_value, num_data, create_sample_object)
+        consume_leader_algorithm(session, message_value, num_data, create_sample_object)
         consume_moriss_counting(message_value, num_data)
         consume_space_saving(message_value)
 
