@@ -1,6 +1,6 @@
 from kafka import KafkaConsumer
 from time import sleep
-from random import randrange
+from random import randrange, uniform
 from math import sin, cos, sqrt, atan2, radians, inf
 import json
 
@@ -42,6 +42,13 @@ LA_earth_radius = 6373.0 # radius of the earth in km
 LA_distance_thr = 250    # distance threshold in km
 LA_leaders = []          # leader data point centroids
 
+### Morris counter
+M_count = 0              # set count c to 0
+
+### Space Saving
+k_SpaceSaving = 3
+item_SpaceSaving = []   
+count_SpaceSaving = []
 
 #####################
 # Consumer sketches #
@@ -148,6 +155,40 @@ def consume_leader_algorithm(message_value):
         LA_leaders.append(leader_object)     
         print('Minimal distance from closest cluster centroid is', closest_dist, '-> Leader algorithm created a new leader with index', len(LA_leaders)-1)
 
+### Moriss' counter
+def consume_moriss_counting(message_value):
+    global M_count
+    
+    prob = 1 / (2 ** M_count)
+    r = uniform(0, 1)
+
+    if r < prob:
+        M_count += 1 
+
+    print('Real Num data', num_data)
+    print('Morriss approximate', 2 ** M_count - 1)
+
+def consume_space_saving(message_value):
+    global k_SpaceSaving, item_SpaceSaving, count_SpaceSaving
+
+    radius = message_value['accuracy_radius']
+
+    if radius in item_SpaceSaving:
+        count_SpaceSaving[item_SpaceSaving.index(radius)] += 1
+
+    elif len(item_SpaceSaving) < k_SpaceSaving :
+        item_SpaceSaving.append(radius)
+        count_SpaceSaving.append(1)
+
+    else:
+        my_min = min(count_SpaceSaving)
+        item_SpaceSaving[count_SpaceSaving.index(my_min)] = radius
+        count_SpaceSaving[count_SpaceSaving.index(my_min)] = my_min + 1
+    
+    print(item_SpaceSaving)
+    print(count_SpaceSaving)
+
+
 ############
 # Main app #
 ############
@@ -171,6 +212,8 @@ if consumer is not None:
         consume_EMA_accuracy_radius(message_value)
         consume_reservoir_sampling(message_value)
         consume_leader_algorithm(message_value)
+        consume_moriss_counting(message_value)
+        consume_space_saving(message_value)
 
         print('-----')
 
