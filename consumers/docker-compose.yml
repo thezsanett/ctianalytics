@@ -4,8 +4,14 @@ services:
   consumer_combined:
     container_name: consumer_combined
     build: .
+    networks:
+      - default
+      - secondary
 
 networks:
   default:
     external:
       name: kafka-network
+  secondary:
+    external:
+      name: cassandra-network
