@@ -1,6 +1,6 @@
 from kafka import KafkaConsumer
 from time import sleep
-from random import randrange
+from random import randrange, uniform
 import json
 
 ####################
@@ -35,6 +35,9 @@ EMA_acc_rad = 0          # current exponential moving average
 ### Reservoir sampling
 RS_k = 5                 # array length
 RS_array = []            # reservoir array
+
+### Morris counter
+M_count = 0              # set count c to 0
 
 #####################
 # Consumer sketches #
@@ -95,6 +98,19 @@ def consume_reservoir_sampling(message_value):
         
     print('Reservoir sample', RS_array)
 
+### Moriss' counter
+def consume_moriss_counting(message_value):
+    global M_count
+    
+    prob = 1 / (2 ** M_count)
+    r = uniform(0, 1)
+
+    if r < prob:
+        M_count += 1 
+
+    print('Real Num data', num_data)
+    print('Morris’s approximate', 2 ** M_count - 1)
+
 # TODO: add more sketches
 
 ############
@@ -119,6 +135,7 @@ if consumer is not None:
         consume_MA_accuracy_radius(message_value)
         consume_EMA_accuracy_radius(message_value)
         consume_reservoir_sampling(message_value)
+        consume_moriss_counting(message_value)
 
         print(' ')
 
