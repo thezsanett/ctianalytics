@@ -39,6 +39,11 @@ RS_array = []            # reservoir array
 ### Morris counter
 M_count = 0              # set count c to 0
 
+### Space Saving
+k_SpaceSaving = 3
+item_SpaceSaving = []   
+count_SpaceSaving = []
+
 #####################
 # Consumer sketches #
 #####################
@@ -109,7 +114,28 @@ def consume_moriss_counting(message_value):
         M_count += 1 
 
     print('Real Num data', num_data)
-    print('Morris’s approximate', 2 ** M_count - 1)
+    print('Morriss approximate', 2 ** M_count - 1)
+
+def consume_space_saving(message_value):
+    global k_SpaceSaving, item_SpaceSaving, count_SpaceSaving
+
+    radius = message_value['accuracy_radius']
+
+    if radius in item_SpaceSaving:
+        count_SpaceSaving[item_SpaceSaving.index(radius)] += 1
+
+    elif len(item_SpaceSaving) < k_SpaceSaving :
+        item_SpaceSaving.append(radius)
+        count_SpaceSaving.append(1)
+
+    else:
+        my_min = min(count_SpaceSaving)
+        item_SpaceSaving[count_SpaceSaving.index(my_min)] = radius
+        count_SpaceSaving[count_SpaceSaving.index(my_min)] = my_min + 1
+    
+    print(item_SpaceSaving)
+    print(count_SpaceSaving)
+
 
 # TODO: add more sketches
 
@@ -136,6 +162,7 @@ if consumer is not None:
         consume_EMA_accuracy_radius(message_value)
         consume_reservoir_sampling(message_value)
         consume_moriss_counting(message_value)
+        consume_space_saving(message_value)
 
         print(' ')
 
