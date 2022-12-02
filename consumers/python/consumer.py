@@ -5,6 +5,7 @@ import json
 
 from sketches_sz2jjs import * 
 from sketches_w5h8nt import * 
+from sketches_f7rg3j import *
 
 consumer = None
 counter = 0
@@ -72,6 +73,7 @@ if consumer is not None:
         consume_leader_algorithm(session, message_value, num_data, create_sample_object)
         consume_moriss_counting(message_value, num_data)
         consume_space_saving(message_value)
+        consume_heavy_hitters(message_value)
 
         print('-----')
 
