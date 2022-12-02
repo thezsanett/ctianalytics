@@ -41,7 +41,6 @@ def create_sample_object(message_value):
 # Main app #
 ############
 
-session = set_up_cassandra()
 # rows = session.execute('SELECT * FROM alienvaultdata;')
 # for row in rows:
 #     print(row)
@@ -56,7 +55,12 @@ while counter < 10 and consumer is None:
         sleep(10)
 
 if consumer is not None:
-    print('Kafka is up. Printing messages on topic alienvaultdata...')
+    print('Kafka is up.')
+
+    print('Trying to connect to Cassandra...')
+    session = set_up_cassandra()
+
+    print('Printing messages on topic alienvaultdata...')
 
     for msg in consumer:
         message_value = json.loads(msg.value)
