@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  consumer_example:
-    container_name: consumer_example
+  consumer_combined:
+    container_name: consumer_combined
     build: .
 
 networks:
