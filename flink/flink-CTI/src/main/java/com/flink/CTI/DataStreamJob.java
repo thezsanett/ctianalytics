@@ -16,65 +16,105 @@
  * limitations under the License.
  */
 
-package com.flink.CTI;
-
-import org.apache.flink.api.common.eventtime.WatermarkStrategy;
-import org.apache.flink.api.common.serialization.DeserializationSchema;
-import org.apache.flink.api.common.serialization.SimpleStringSchema;
+import org.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.util.Collector;
 import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
+import org.apache.flink.connector.kafka.sink.KafkaSink;
+import org.apache.flink.connector.kafka.sink.KafkaRecordSerializationSchema;
+import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.cassandra.CassandraSink;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 
 /**
- * Skeleton for a Flink DataStream Job.
- *
- * <p>For a tutorial how to write a Flink application, check the
- * tutorials and examples on the <a href="https://flink.apache.org">Flink Website</a>.
- *
- * <p>To package your application into a JAR file for execution, run
- * 'mvn clean package' on the command line.
- *
- * <p>If you change the name of the main class (with the public static void main(String[] args))
- * method, change the respective entry in the POM.xml file (simply search for 'mainClass').
+ * This is a re-write of the Apache Flink WordCount example using Kafka connectors.
+ * Find the original example at 
+ * https://github.com/apache/flink/blob/master/flink-examples/flink-examples-streaming/src/main/java/org/apache/flink/streaming/examples/wordcount/WordCount.java
  */
 public class DataStreamJob {
 
+	final static String inputTopic = "alienvaultdata";
+	final static String outputTopic = "output-topic";
+	final static String jobTitle = "WordCount";
+
 	public static void main(String[] args) throws Exception {
-		// Sets up the execution environment, which is the main entry point
-		// to building Flink applications.
+	    final String bootstrapServers = args.length > 0 ? args[0] : "broker:9092";
+
+		// Set up the streaming execution environment
 		final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-		/*
-		 * Here, you can start creating your execution plan for Flink.
-		 *
-		 * Start with getting some data from the environment, like
-		 * 	env.fromSequence(1, 10);
-		 *
-		 * then, transform the resulting DataStream<Long> using operations
-		 * like
-		 * 	.filter()
-		 * 	.flatMap()
-		 * 	.window()
-		 * 	.process()
-		 *
-		 * and many more.
-		 * Have a look at the programming guide:
-		 *
-		 * https://nightlies.apache.org/flink/flink-docs-stable/
-		 *
-		 */
 
 		KafkaSource<String> source = KafkaSource.<String>builder()
-				.setBootstrapServers("broker:9092")
-				.setTopics("alienvaultdata")
-				.setStartingOffsets(OffsetsInitializer.earliest())
-				.setValueOnlyDeserializer(new SimpleStringSchema())
-				.build();
-		//the ouptut of your sketch sould be paased
-		//env.fromSource(source, WatermarkStrategy.noWatermarks(), "Kafka Source");
-		CassandraSink.addSink("yoursketch outpu")
-				.setQuery("INSERT INTO flinkoutput.yourSketchTableName(column1, column2, column3) values (?, ?,?);")
-				.setHost("127.0.0.1:9042")
-				.build();
+		    .setBootstrapServers(bootstrapServers)
+		    .setTopics(inputTopic)
+		    .setGroupId("my-group")
+		    .setStartingOffsets(OffsetsInitializer.earliest())
+		    .setValueOnlyDeserializer(new SimpleStringSchema())
+		    .build();
+
+		KafkaRecordSerializationSchema<String> serializer = KafkaRecordSerializationSchema.builder()
+			.setValueSerializationSchema(new SimpleStringSchema())
+			.setTopic(outputTopic)
+			.build();
+
+		KafkaSink<String> sink = KafkaSink.<String>builder()
+			.setBootstrapServers(bootstrapServers)
+			.setRecordSerializer(serializer)
+			.build();
+
+		DataStream<String> text = env.fromSource(source, WatermarkStrategy.noWatermarks(), "Kafka Source");
+
+
+		// Split up the lines in pairs (2-tuples) containing: (word,1)
+        DataStream<String> counts = text.flatMap(new Tokenizer())
+		// Group by the tuple field "0" and sum up tuple field "1"
+		.keyBy(value -> value.f0)
+		.sum(1)
+		.flatMap(new Reducer());
+
+		// Add the sink to so results
+		// are written to the outputTopic
+        counts.sinkTo(sink);
+
+		// Execute program
+		env.execute(jobTitle);
 	}
+
+    /**
+     * Implements the string tokenizer that splits sentences into words as a user-defined
+     * FlatMapFunction. The function takes a line (String) and splits it into multiple pairs in the
+     * form of "(word,1)" ({@code Tuple2<String, Integer>}).
+     */
+    public static final class Tokenizer
+            implements FlatMapFunction<String, Tuple2<String, Integer>> {
+
+        @Override
+        public void flatMap(String value, Collector<Tuple2<String, Integer>> out) {
+            // Normalize and split the line
+            String[] tokens = value.toLowerCase().split("\\W+");
+
+            // Emit the pairs
+            for (String token : tokens) {
+                if (token.length() > 0) {
+                    out.collect(new Tuple2<>(token, 1));
+                }
+            }
+        }
+    }
+
+    // Implements a simple reducer using FlatMap to
+    // reduce the Tuple2 into a single string for 
+    // writing to kafka topics
+    public static final class Reducer
+            implements FlatMapFunction<Tuple2<String, Integer>, String> {
+
+        @Override
+        public void flatMap(Tuple2<String, Integer> value, Collector<String> out) {
+        	// Convert the pairs to a string
+        	// for easy writing to Kafka Topic
+        	String count = value.f0 + " " + value.f1;
+        	out.collect(count);
+        }
+    }
 }

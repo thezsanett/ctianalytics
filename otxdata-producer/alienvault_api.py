@@ -57,7 +57,7 @@ def get_and_send_pulse(otx, pulse_id, generated_id):
 
     producer.send('alienvaultdata', json_serializer(data))
 
-    print("Sent: ", data)
+    print("\nSent: ", data)
 
 for pulse in pulses:
   generated_id = str(uuid.uuid1())

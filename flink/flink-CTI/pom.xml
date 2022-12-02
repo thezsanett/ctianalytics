@@ -124,6 +124,7 @@ under the License.
 	</dependencies>
 
 	<build>
+        <finalName>FlinkScketches</finalName>
 		<plugins>
 
 			<!-- Java Compiler -->

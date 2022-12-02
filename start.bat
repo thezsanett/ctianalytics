@@ -3,7 +3,7 @@ docker network create cassandra-network
 
 docker-compose -f kafka/docker-compose.yml up -d --build
 docker-compose -f consumers/docker-compose.yml up -d --build
-docker-compose -f flink/flink-compose.yml up -d --build
+docker-compose -f flink/docker-compose.yml up -d --build
 echo "Kafka-Manager front end will be avaliable in a few minutes at http://localhost:9000."
 
 # TODO: there may be a bug, where Cassandra sinks don't start in Kafka. 
