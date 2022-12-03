@@ -69,14 +69,18 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-connector-kafka</artifactId>
-			<version>1.16.0</version>
+			<version>${flink.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-connector-cassandra_2.12</artifactId>
-			<version>1.17-SNAPSHOT</version>
+			<version>${flink.version}</version>
 		</dependency>
-
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-scala_2.11</artifactId>
+            <version>1.4.2</version>
+        </dependency>
 
 
 
@@ -110,16 +114,6 @@ under the License.
 			<artifactId>log4j-core</artifactId>
 			<version>${log4j.version}</version>
 			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-autoconfigure</artifactId>
-			<version>2.3.4.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flink</groupId>
-			<artifactId>flink-connector-cassandra_2.12</artifactId>
-			<version>1.15.1</version>
 		</dependency>
 	</dependencies>
 
