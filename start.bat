@@ -11,6 +11,7 @@ echo "Kafka-Manager front end will be avaliable in a few minutes at http://local
 # docker exec -d kafka-connect ./start-and-wait.sh
 
 docker-compose -f cassandra/docker-compose.yml up -d --build
+docker-compose -f cassandra_output/docker-compose.yml up -d --build
 
 echo "Done initilizing the containers."
 docker ps -a

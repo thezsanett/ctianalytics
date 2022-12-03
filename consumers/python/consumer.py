@@ -12,9 +12,9 @@ counter = 0
 
 num_data = 0  
 
-cassandra_name = 'cassandra'
+cassandra_name = 'cassandra_output'
 cassandra_port = 9042
-keyspace_name = 'kafkapipeline'
+keyspace_name = 'sketches'
 
 def create_consumer():
     consumer = KafkaConsumer('alienvaultdata', bootstrap_servers='broker:9092')
