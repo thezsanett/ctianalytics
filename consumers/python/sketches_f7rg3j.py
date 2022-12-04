@@ -44,9 +44,12 @@ def consume_country_heavy_hitters(message_value):
 
     global country_counter
 
-    country = ipapi.location(ip=message_value['indicator'], output='country_name')
-    country_counter.add_count(country)
-    print(dict(country_counter._count))
+    try:
+        country = ipapi.location(ip=message_value['indicator'], output='country_name')
+        country_counter.add_count(country)
+        print(dict(country_counter._count))
+    except:
+        pass
 
 def consume_data_enrichment(message_value, to_print=False):
 
