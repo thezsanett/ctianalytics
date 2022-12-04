@@ -1,5 +1,5 @@
 from collections import defaultdict
-
+import ipapi
 
 class LossyCounting(object):
     'Implemendation of Lossy Counting'
@@ -29,12 +29,27 @@ class LossyCounting(object):
                 del self._count[item]
                 del self._bucket_id[item]
 
-counter = LossyCounting(5e-3)
+ip_counter = LossyCounting(5e-3)
+country_counter = LossyCounting(5e-3)
 
-def consume_heavy_hitters(message_value):
+def consume_ip_heavy_hitters(message_value):
 
-    global counter
+    global ip_counter
 
     ip = message_value['indicator']
-    counter.add_count(ip)
-    print(dict(counter._count))
+    ip_counter.add_count(ip)
+    print(dict(ip_counter._count))
+
+def consume_country_heavy_hitters(message_value):
+
+    global country_counter
+
+    country = ipapi.location(ip=message_value['indicator'], output='country_name')
+    country_counter.add_count(country)
+    print(dict(country_counter._count))
+
+def consume_data_enrichment(message_value, to_print=False):
+
+    data =  ipapi.location(ip=message_value['indicator'])
+
+    print(data)
