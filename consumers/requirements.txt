@@ -1,3 +1,4 @@
 kafka-python
 cassandra-driver
+numpy
 ipapi
