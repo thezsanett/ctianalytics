@@ -9,8 +9,8 @@ import math
 M_count = 0              # set count c to 0
 
 M_insert = "INSERT INTO morriss_counter " \
-            "(timestamp, value) " \
-            "VALUES (toTimestamp(now()), %s)"
+            "(timestamp, value, uuid) " \
+            "VALUES (toTimestamp(now()), %s, 94d6cc06-74b3-11ed-a1eb-0242ac120002)"
 
 ### Space Saving
 k_SpaceSaving = 3        # 
@@ -24,8 +24,8 @@ SS_update = "UPDATE space_saving SET " \
             "WHERE id=%s"
 
 SS_insert = "INSERT INTO space_saving " \
-            "(id, value, freq, timestamp) " \
-            "VALUES (%s, %s, %s, toTimestamp(now()))"
+            "(id, value, freq, timestamp, uuid) " \
+            "VALUES (%s, %s, %s, toTimestamp(now()), 94d6cecc-74b3-11ed-a1eb-0242ac120002)"
 
 ###DGIM
 k = 2 
@@ -36,8 +36,8 @@ capacity = []
 timestamp = []
 
 DGIM_insert = "INSERT INTO dgim " \
-            "(timestamp, value) " \
-            "VALUES (toTimestamp(now()), %s)"
+            "(timestamp, value, uuid) " \
+            "VALUES (toTimestamp(now()), %s, 94d6d020-74b3-11ed-a1eb-0242ac120002)"
 
 
 ############
@@ -56,7 +56,7 @@ def consume_moriss_counting(session, message_value, num_data):
 
     print('Data processed:', num_data, " -> Morris's approximate:", 2 ** M_count - 1)
 
-    session.execute(M_insert, [M_count])
+    session.execute(M_insert, [2 ** M_count - 1])
 
 ### Space saving
 def consume_space_saving(session, message_value):
@@ -94,8 +94,8 @@ def helper_merge_two_oldest_bucket(size):
     second_oldest_time = math.inf
     second_oldest_index = -1
 
-    print('MERGE')
-    helper_print()
+    #print('MERGE')
+    #helper_print()
 
     try:
         # merge two oldest buckets at capacity 'size'
@@ -109,14 +109,14 @@ def helper_merge_two_oldest_bucket(size):
             if i != oldest_index and timestamp[i] < second_oldest_time:
                 second_oldest_time = capacity[i]
                 second_oldest_index = i
-        print(f'Merge at index: {oldest_index} and {second_oldest_index}')
+        #print(f'Merge at index: {oldest_index} and {second_oldest_index}')
 
         # merge oldest and delete second oldest
         capacity[oldest_index] = size * 2
         timestamp[oldest_index] = time
         timestamp.pop(second_oldest_index)
         capacity.pop(second_oldest_index)
-        print('END MERGE')
+        #print('END MERGE')
         return True
     except:
         print('There is an error during merging in DGIM!')
@@ -130,7 +130,7 @@ def helper_delete_old_buckets(older):
         if time <= older:
             timestamp.pop(i)
             capacity.pop(i)
-    print('DELETE DGIM SUCCESS')
+    #print('DELETE DGIM SUCCESS')
 
 
 def helper_print():

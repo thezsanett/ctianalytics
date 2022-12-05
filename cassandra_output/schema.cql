@@ -49,6 +49,7 @@ CREATE TABLE ksparse_output (
 CREATE TABLE morriss_counter (
     timestamp TIMESTAMP,
     value INT,
+    uuid UUID,
     PRIMARY KEY (timestamp)
 );
 
@@ -57,12 +58,14 @@ CREATE TABLE space_saving (
     value INT,
     freq INT,
     timestamp TIMESTAMP,
+    uuid UUID,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE dgim (
     timestamp TIMESTAMP,
     value INT,
+    uuid UUID,
     PRIMARY KEY (timestamp)
 );
 CREATE TABLE ip_heavy_hitters (
