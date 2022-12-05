@@ -95,7 +95,7 @@ def consume_reservoir_sampling(session, message_value, num_data, create_sample_o
         session.execute(RS_insert, [len(RS_array)-1, reservoir_object['indicator']])
     
     else:
-        r = randrange(RS_k)
+        r = randrange(t)
         if r < RS_k:
             print('Reservoir sample in update phase replacing index', r)
             RS_array[r] = reservoir_object
