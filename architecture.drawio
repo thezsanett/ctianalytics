@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-11-03T18:51:13.687Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" etag="CF9G7stYbZ0GIGNvY9pa" version="20.5.1" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2022-12-05T17:00:42.252Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36" etag="AYF3dTbKohbKnq9jpgKh" version="20.6.0" type="github" pages="3">
   <diagram id="nxlNkdYTlS7XlazafqMG" name="Page-1">
-    <mxGraphModel dx="1865" dy="511" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2249" dy="786" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -68,7 +68,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="WgEe9fqnrv0zfawT-3C7" name="Page-2">
-    <mxGraphModel dx="1865" dy="1680" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" backgroundImage="{&quot;src&quot;:&quot;data:page/id,nxlNkdYTlS7XlazafqMG&quot;}" math="0" shadow="0">
+    <mxGraphModel dx="2249" dy="1955" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" backgroundImage="{&quot;src&quot;:&quot;data:page/id,nxlNkdYTlS7XlazafqMG&quot;}" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -155,6 +155,107 @@
         </mxCell>
         <mxCell id="Yr-ZDy5coHot1IQStwBp-6" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;fillColor=none;image=https://www.ovhcloud.com/sites/default/files/styles/large_screens_1x/public/2022-02/apache_cassandra_830.png;" parent="1" vertex="1">
           <mxGeometry x="-129" y="435" width="105.2" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="Xgwjym8Qe16gNbA0KiaI" name="Page-3">
+    <mxGraphModel dx="3478" dy="2083" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kDiGPvMQGILaZVHveNgW-1" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.docker.com/wp-content/uploads/2020/12/Whale-Logo332_5.png;opacity=30;" vertex="1" parent="1">
+          <mxGeometry x="-380" y="34.5" width="855.66" height="639.36" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-2" value="&lt;p style=&quot;line-height: 1.2;&quot;&gt;Docker Container&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fillColor=none;image=https://www.docker.com/wp-content/uploads/2020/12/Whale-Logo332_5.png;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="-577.75" y="-40" width="1090" height="730" as="geometry" />
+        </mxCell>
+        <mxCell id="EbnWHkAIQAbOh0VPsdlq-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="kDiGPvMQGILaZVHveNgW-4" target="EbnWHkAIQAbOh0VPsdlq-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-4" value="&lt;p style=&quot;line-height: 1.2;&quot;&gt;Inputs&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="-870" y="104.69" width="210" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-5" value="AlienVault" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-852.24" y="155.31" width="174.5" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="kDiGPvMQGILaZVHveNgW-8" target="kDiGPvMQGILaZVHveNgW-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="kDiGPvMQGILaZVHveNgW-8" target="kDiGPvMQGILaZVHveNgW-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-8" value="&lt;p style=&quot;line-height: 1.2;&quot;&gt;Data Streaming&lt;/p&gt;&lt;p style=&quot;line-height: 1.2;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="-280" y="120" width="160" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="kDiGPvMQGILaZVHveNgW-11" target="kDiGPvMQGILaZVHveNgW-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-33" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="kDiGPvMQGILaZVHveNgW-11" target="kDiGPvMQGILaZVHveNgW-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-11" value="Stream&lt;br&gt;&amp;nbsp;Processing" style="ellipse;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="-30" y="100" width="220" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="kDiGPvMQGILaZVHveNgW-13" target="kDiGPvMQGILaZVHveNgW-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-13" value="Glacier Storage" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;verticalAlign=top;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="-180" y="480" width="210" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-18" value="Kafka" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-250" y="173.3" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-19" value="Flink / Python" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="28.599999999999994" y="169" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-20" value="" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="-120" y="545" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-21" value="&lt;p style=&quot;line-height: 1.2;&quot;&gt;Data Visualisation&lt;/p&gt;&lt;p style=&quot;line-height: 1.2;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="295.66" y="120" width="180" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-22" value="Grafana" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="335.66" y="173.3" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-23" value="Store raw data" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-270" y="390" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-24" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;fillColor=none;image=https://www.maltego.com/images/uploads/alienvault-otx-logo.png;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="-808.64" y="205.31" width="87.29" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-25" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;fillColor=none;image=https://flink.apache.org/img/logo/png/1000/flink_squirrel_1000.png;" vertex="1" parent="1">
+          <mxGeometry x="44.150000000000006" y="213.3" width="61.7" height="61.7" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-26" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Apache_kafka.svg/1261px-Apache_kafka.svg.png;" vertex="1" parent="1">
+          <mxGeometry x="-215" y="209.78" width="30" height="48.75" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-27" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;fillColor=none;image=https://aws1.discourse-cdn.com/business7/uploads/grafana/original/2X/a/a7f38198d3aa26d70bae13c3379e5b93a010e7d7.png;" vertex="1" parent="1">
+          <mxGeometry x="202" y="244" width="56" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-28" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;fillColor=none;image=https://www.ovhcloud.com/sites/default/files/styles/large_screens_1x/public/2022-02/apache_cassandra_830.png;" vertex="1" parent="1">
+          <mxGeometry x="-129" y="535" width="105.2" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="EbnWHkAIQAbOh0VPsdlq-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.357;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0;exitDx=0;exitDy=45;exitPerimeter=0;" edge="1" parent="1" source="kDiGPvMQGILaZVHveNgW-29" target="kDiGPvMQGILaZVHveNgW-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-29" value="Output Storage / Querying" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;verticalAlign=top;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="100" y="360" width="210" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="kDiGPvMQGILaZVHveNgW-30" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;fillColor=none;image=https://www.ovhcloud.com/sites/default/files/styles/large_screens_1x/public/2022-02/apache_cassandra_830.png;" vertex="1" parent="1">
+          <mxGeometry x="152.8" y="420" width="105.2" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="EbnWHkAIQAbOh0VPsdlq-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="EbnWHkAIQAbOh0VPsdlq-1" target="kDiGPvMQGILaZVHveNgW-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EbnWHkAIQAbOh0VPsdlq-1" value="&lt;p style=&quot;line-height: 1.2;&quot;&gt;Data Producer&lt;/p&gt;&lt;p style=&quot;line-height: 1.2;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="-520" y="120" width="160" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="EbnWHkAIQAbOh0VPsdlq-2" value="OTX Python API" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-490" y="185" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EbnWHkAIQAbOh0VPsdlq-9" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;fillColor=none;image=https://www.ovhcloud.com/sites/default/files/styles/large_screens_1x/public/2022-02/apache_cassandra_830.png;" vertex="1" parent="1">
+          <mxGeometry x="-129" y="535" width="105.2" height="70" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
