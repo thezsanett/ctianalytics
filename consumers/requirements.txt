@@ -2,3 +2,6 @@ kafka-python
 cassandra-driver
 numpy
 ipapi
+mmh3
+combo
+pysad

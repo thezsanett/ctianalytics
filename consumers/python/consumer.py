@@ -76,6 +76,7 @@ if consumer is not None:
         consume_dgim(session, message_value)
         consume_ip_heavy_hitters(session, message_value)
         consume_country_heavy_hitters(session, message_value, to_print=True)
+        consume_outlier_detection(message_value)
 
         print('-----')
 
