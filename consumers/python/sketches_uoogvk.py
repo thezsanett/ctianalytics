@@ -22,14 +22,14 @@ class CountMinTable:
         for row,h in enumerate(self.hashes):
             column = h(value)
             counts.append(self.table[row,column])
-        return min(counts)
+        return int(min(counts))
 
 countmin_insert = "INSERT INTO count_min_output " \
             "(timestamp, ip, count) " \
             "VALUES (toTimestamp(now()), %s, %s)"
 countmin_table = CountMinTable(0.0001,0.1)
     
-def count_min(message_value):
+def count_min(session, message_value):
     global countmin_table
     indicator = message_value["indicator"]
     countmin_table.update(indicator)
@@ -43,11 +43,12 @@ class FlajoletMartinBitmap:
     def __init__(self, L):
         self.hash = hash_mod(2**L)
         self.bitmap = np.zeros(L)
+        self.L = L
     
     def update(self, value):
         h = self.hash(value)
         index = -1
-        for i in range(0, L+1):
+        for i in range(0, self.L+1):
             bit = h & 2**i
             if bit != 0:
                 index = i
@@ -66,13 +67,13 @@ flajoletmartin_insert = "INSERT INTO flajoletmartin_output " \
             "VALUES (toTimestamp(now()), %s)"
 flajoletmartin_bitmap = FlajoletMartinBitmap(20)
     
-def flajolet_martin(message_value):
+def flajolet_martin(session, message_value):
     global flajoletmartin_bitmap
     indicator = message_value["indicator"]
     flajoletmartin_bitmap.update(indicator)
     count = flajoletmartin_bitmap.query()
     print("Distinct elements: {}".format(count))
-    session.execute(flajoletmartin_insert, [count])
+    session.execute(flajoletmartin_insert, [int(count)])
     
 # ITERATIVE K MEANS
 
@@ -103,7 +104,7 @@ class IterativeKMeans:
                 closest = self.__get_closest_cluster_for(element)
                 cluster_assignments[i] = closest
             for i in range(self.k):
-                average = np.zeros((number_of_attributes,))
+                average = np.zeros((self.number_of_attributes,))
                 num_of_elements = 0
                 for j, assigned in enumerate(cluster_assignments):
                     if assigned == i:
@@ -139,7 +140,7 @@ kmeans_insert = "INSERT INTO ksparse_output " \
             "VALUES (toTimestamp(now()), %s, %s)"
 iterativekmeans = IterativeKMeans(k=4,number_of_attributes=2,buffer_size=30)
     
-def iterative_kmeans(message_value):
+def iterative_kmeans(session, message_value):
     global iterativekmeans
     data = np.asarray((float(message_value["latitude"]), float(message_value["longitude"])))
     iterativekmeans.update(data)
