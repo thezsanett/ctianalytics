@@ -59,3 +59,9 @@ CREATE TABLE space_saving (
     timestamp TIMESTAMP,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE dgim (
+    timestamp TIMESTAMP,
+    value INT,
+    PRIMARY KEY (timestamp)
+);

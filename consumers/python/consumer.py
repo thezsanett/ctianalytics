@@ -74,6 +74,7 @@ if consumer is not None:
         consume_leader_algorithm(session, message_value, num_data, create_sample_object)
         consume_moriss_counting(session, message_value, num_data)
         consume_space_saving(session, message_value)
+        consume_dgim(session, message_value)
         consume_ip_heavy_hitters(message_value)
         consume_country_heavy_hitters(message_value)
 
