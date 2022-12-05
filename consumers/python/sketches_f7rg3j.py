@@ -1,5 +1,7 @@
 from collections import defaultdict
 import ipapi
+from pysad.models import xStream
+from pysad.transform.preprocessing import InstanceUnitNormScaler
 
 class LossyCounting(object):
     'Implemendation of Lossy Counting'
@@ -82,3 +84,18 @@ def consume_data_enrichment(message_value):
     data =  ipapi.location(ip=message_value['indicator'])
 
     print(data)
+
+
+model = xStream()  
+preprocessor = InstanceUnitNormScaler() 
+
+def consume_outlier_detection(message_value):
+
+
+    global model
+    global preprocessor
+
+    x = preprocessor.fit_transform_partial([message_value['latitude']]) 
+
+    score = model.fit_score_partial(x)  
+    print(f"anomalousness score = {score[0]}")
