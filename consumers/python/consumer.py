@@ -43,10 +43,6 @@ def create_sample_object(message_value):
 # Main app #
 ############
 
-# rows = session.execute('SELECT * FROM alienvaultdata;')
-# for row in rows:
-#     print(row)
-
 while counter < 10 and consumer is None:
     try:
         print('Trying to connect to Kafka...')
