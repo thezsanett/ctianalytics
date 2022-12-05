@@ -72,8 +72,8 @@ if consumer is not None:
         consume_EMA_accuracy_radius(session, message_value)
         consume_reservoir_sampling(session, message_value, num_data, create_sample_object)
         consume_leader_algorithm(session, message_value, num_data, create_sample_object)
-        consume_moriss_counting(message_value, num_data)
-        consume_space_saving(message_value)
+        consume_moriss_counting(session, message_value, num_data)
+        consume_space_saving(session, message_value)
         consume_ip_heavy_hitters(message_value)
         consume_country_heavy_hitters(message_value)
 

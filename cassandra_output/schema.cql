@@ -45,3 +45,17 @@ CREATE TABLE ksparse_output (
     cluster INT,
     PRIMARY KEY (timestamp)
 );
+
+CREATE TABLE morriss_counter (
+    timestamp TIMESTAMP,
+    value INT,
+    PRIMARY KEY (timestamp)
+);
+
+CREATE TABLE space_saving (
+    id INT,
+    value INT,
+    freq INT,
+    timestamp TIMESTAMP,
+    PRIMARY KEY (id)
+);
