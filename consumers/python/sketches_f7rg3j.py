@@ -25,33 +25,59 @@ class LossyCounting(object):
     def _trim(self):
         'trim data which does not fit the criteria'
         for item, total in list(self._count.items()):
-            if total <= self._current_bucket_id - self._bucket_id[item]:
-                del self._count[item]
-                del self._bucket_id[item]
+            try:
+                if total <= self._current_bucket_id - self._bucket_id[item]:
+                    del self._count[item]
+                    del self._bucket_id[item]
+            except:
+                pass
+
+    def get_sorted_count(self):
+        return sorted(self._count.items(), key=lambda k_v: k_v[1], reverse=True)
+
+    def get_count(self, item):
+        try:
+            return self._count[item]
+        except:
+            return 0
+
 
 ip_counter = LossyCounting(5e-3)
 country_counter = LossyCounting(5e-3)
 
-def consume_ip_heavy_hitters(message_value):
+ip_heavy_hitters_insert = "INSERT INTO ip_heavy_hitters " \
+                            "(ip, frequency) " \
+                            "VALUES (%s, %s)"
+
+
+def consume_ip_heavy_hitters(session, message_value, to_print=False):
 
     global ip_counter
 
     ip = message_value['indicator']
     ip_counter.add_count(ip)
-    print(dict(ip_counter._count))
+    if to_print:
+        print(ip_counter.get_sorted_count())
+    session.execute(ip_heavy_hitters_insert, [ip, ip_counter.get_count(ip)])
 
-def consume_country_heavy_hitters(message_value):
+country_heavy_hitters_insert = "INSERT INTO country_heavy_hitters " \
+                                "(country, frequency) " \
+                                "VALUES (%s, %s)"
+
+def consume_country_heavy_hitters(session, message_value, to_print=False):
 
     global country_counter
 
+    country = message_value['country_name']
     try:
-        country = ipapi.location(ip=message_value['indicator'], output='country_name')
         country_counter.add_count(country)
-        print(dict(country_counter._count))
+        if to_print:
+            print(country_counter.get_sorted_count())
+        session.execute(country_heavy_hitters_insert, [country, country_counter.get_count(country)])
     except:
         pass
 
-def consume_data_enrichment(message_value, to_print=False):
+def consume_data_enrichment(message_value):
 
     data =  ipapi.location(ip=message_value['indicator'])
 
