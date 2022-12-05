@@ -11,4 +11,4 @@ RUN python -m pip install --upgrade pip && \
     chown -R sfu:users /usr/app/data
 USER sfu
 COPY --chown=sfu:users python ./python
-CMD ["python", "-u", "python/consumer_example.py"]
+CMD ["python", "-u", "python/consumer.py"]

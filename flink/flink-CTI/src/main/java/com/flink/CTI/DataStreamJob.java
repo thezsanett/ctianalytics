@@ -11,10 +11,6 @@ import org.json.JSONObject;
 
 public class DataStreamJob {
 
-
-
-
-
 	/**
 	 * Skeleton for a Flink DataStream Job.
 	 *
@@ -30,8 +26,9 @@ public class DataStreamJob {
 
 
 	public static void main(String[] args) throws Exception {
-		// Sets up the execution environment, which is the main entry point
-		// to building Flink applications.
+	    final String bootstrapServers = args.length > 0 ? args[0] : "broker:9092";
+
+		// Set up the streaming execution environment
 		final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
 		SpaceSaving spaceSaving = new SpaceSaving();
@@ -65,14 +62,43 @@ public class DataStreamJob {
 		});
 		// spaceSaving.updateSpaceSaving();
 
-
-
-
-
-
-
 		env.execute();
-
-
 	}
+
+    /**
+     * Implements the string tokenizer that splits sentences into words as a user-defined
+     * FlatMapFunction. The function takes a line (String) and splits it into multiple pairs in the
+     * form of "(word,1)" ({@code Tuple2<String, Integer>}).
+     */
+    public static final class Tokenizer
+            implements FlatMapFunction<String, Tuple2<String, Integer>> {
+
+        @Override
+        public void flatMap(String value, Collector<Tuple2<String, Integer>> out) {
+            // Normalize and split the line
+            String[] tokens = value.toLowerCase().split("\\W+");
+
+            // Emit the pairs
+            for (String token : tokens) {
+                if (token.length() > 0) {
+                    out.collect(new Tuple2<>(token, 1));
+                }
+            }
+        }
+    }
+
+    // Implements a simple reducer using FlatMap to
+    // reduce the Tuple2 into a single string for 
+    // writing to kafka topics
+    public static final class Reducer
+            implements FlatMapFunction<Tuple2<String, Integer>, String> {
+
+        @Override
+        public void flatMap(Tuple2<String, Integer> value, Collector<String> out) {
+        	// Convert the pairs to a string
+        	// for easy writing to Kafka Topic
+        	String count = value.f0 + " " + value.f1;
+        	out.collect(count);
+        }
+    }
 }

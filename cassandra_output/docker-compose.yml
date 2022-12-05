@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  cassandra:
+    container_name: cassandra_output
+    image: bootstrapcassandra
+    build: .
+    ports:
+      - 9043:9043
+    volumes:
+      - $PWD/cassandra_output/data:/var/lib/cassandra
+networks:
+  default:
+    external:
+      name: cassandra-network

@@ -2,6 +2,7 @@ version: "2.2"
 services:
   jobmanager:
     image: flink:latest
+    container_name: flink_jobmanager
     ports:
       - "8081:8081"
     command: jobmanager
@@ -9,11 +10,10 @@ services:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager     
-    volumes:
-      - C:\Users\ginger\Downloads\ctianalytics-main\ctianalytics\flink\flink-CTI:/opt/flink/examples/streaming   
 
   taskmanager:
     image: flink:latest
+    container_name: flink_taskmanager
     depends_on:
       - jobmanager
     command: taskmanager
