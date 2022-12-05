@@ -6,4 +6,4 @@ ADD ./requirements.txt ./
 RUN pip install -r requirements.txt
 
 ADD ./ ./
-CMD ["python3", "-u","alienvault_api_test.py"]
+CMD ["python3", "-u","alienvault_api.py"]

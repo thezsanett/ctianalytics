@@ -6,6 +6,7 @@ import uuid, json
 producer = KafkaProducer(bootstrap_servers=["broker:9092"], api_version=(0, 10, 1))
 empty_detail = {
   'geo': {
+    'country_name': 'other',
     'latitude': -1,
     'longitude': -1,
     'accuracy_radius': -1,
@@ -66,6 +67,7 @@ def get_and_send_pulse(otx, pulse_id, generated_id):
     data['pulse_id'] = generated_id
     data['created'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     data['passive_dns_count'] = details['passive_dns']['count']
+    data['country_name'] = details['geo']['country_name'] if 'country_name' in details['geo'] else 'other'
 
     producer.send('alienvaultdata', json_serializer(data))
 
