@@ -65,3 +65,14 @@ CREATE TABLE dgim (
     value INT,
     PRIMARY KEY (timestamp)
 );
+CREATE TABLE ip_heavy_hitters (
+    ip TEXT,
+    frequency INT,
+    PRIMARY KEY (ip)
+);
+
+CREATE TABLE country_heavy_hitters (
+    country TEXT,
+    frequency INT,
+    PRIMARY KEY (country)
+);
