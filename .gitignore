@@ -5,3 +5,5 @@ stop.sh
 .DS_Store
 flink/flink-CTI/target/
 flink/flink-CTI/.idea/
+cassandra_output/cassandra_output/data/ 
+cassandra_output/data/ 
