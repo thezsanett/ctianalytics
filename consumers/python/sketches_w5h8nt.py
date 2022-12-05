@@ -60,9 +60,10 @@ def consume_space_saving(session, message_value):
 
     else:
         my_min = min(count_SpaceSaving)
-        item_SpaceSaving[count_SpaceSaving.index(my_min)] = radius
-        count_SpaceSaving[count_SpaceSaving.index(my_min)] = my_min + 1
-        session.execute(SS_update, [radius, my_min + 1, count_SpaceSaving.index(my_min)])
+        my_index = count_SpaceSaving.index(my_min)
+        item_SpaceSaving[my_index] = radius
+        count_SpaceSaving[my_index] = my_min + 1
+        session.execute(SS_update, [radius, my_min + 1, my_index])
     
     print('SpaceSaving algorithm elements:', item_SpaceSaving)
     print('SpaceSaving algorithm frequencies:', count_SpaceSaving)
